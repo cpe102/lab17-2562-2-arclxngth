@@ -11,6 +11,7 @@ int main(){
     vector <int> score_list;
     vector <string> grade_list;
     string input;
+    string low_name_char,low_name_full;
 
     char name[100];
     int num1, num2, num3;
@@ -36,7 +37,7 @@ int main(){
         else if(score_list[i]>=70)    grade_list.push_back("b");
         else if(score_list[i]>=60)    grade_list.push_back("c");
         else if(score_list[i]>=50)    grade_list.push_back("d");
-        else                          grade_list.push_back("e");
+        else                          grade_list.push_back("f");
     }
 
     while(true){
@@ -52,11 +53,23 @@ int main(){
             command[i] = tolower(command[i]);
             i++;
         }
-        
+
+
+        for(int list=0; list<name_list.size();list++){
+ 
+            int j = 0;
+            while(name_list[list][j]){
+
+                name_list[list][j] = tolower(name_list[list][j]);
+                j++;
+            }
+        }
+
+
         int space_pos = command.find_first_of(" ");
         string command_main = command.substr(0,space_pos);
 
-        string target = command.substr(space_pos,command.size());
+        string target = command.substr(space_pos+1,command.size());
 
         int count = 0;
 
@@ -66,11 +79,11 @@ int main(){
 
                 if(name_list[i] == target)  {
 
-                    cout<<name_list[i]<<"'s grade = "<<grade_list[i];
+                    cout<<name_list[i]<<"'s grade = "<<grade_list[i]<<endl;
                     count++;
                 }
             }
-            if(count = 0) cout<<"Cannot found";
+            if(count = 0) cout<<"Cannot found"<<endl;
         }
 
         else if(string(command_main) == "grade"){
@@ -79,14 +92,17 @@ int main(){
 
                 if(grade_list[i] == target)  {
                     
-                    cout<<name_list[i];
+                    cout<<name_list[i]<<endl;
                     count++;
             }
         }
 
-            if(count=0) cout<<"Cannot found";
+            if(count=0) cout<<"Cannot found"<<endl;
         }
 
-        else    cout<<"Invalid command";
+        else if (string(command_main) == "exit")    break;
+
+        else    cout<<"Invalid command"<<endl;
+        cout<<"--------------------------------"<<endl;
     }
 }
