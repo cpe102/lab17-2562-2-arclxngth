@@ -10,8 +10,8 @@ int main(){
     vector <string> name_list;
     vector <int> score_list;
     vector <string> grade_list;
+    vector <string> low_name_list;
     string input;
-    string low_name_char,low_name_full;
 
     char name[100];
     int num1, num2, num3;
@@ -55,16 +55,18 @@ int main(){
         }
 
 
-        for(int list=0; list<name_list.size();list++){
+        for(int list = 0; list < name_list.size(); list++){
  
             int j = 0;
+            string low_name = "";
+
             while(name_list[list][j]){
 
-                name_list[list][j] = tolower(name_list[list][j]);
+                low_name += tolower(name_list[list][j]);
                 j++;
             }
+            low_name_list.push_back(low_name);
         }
-
 
         int space_pos = command.find_first_of(" ");
         string command_main = command.substr(0,space_pos);
@@ -77,7 +79,7 @@ int main(){
 
             for(int i=0; i<name_list.size(); i++){
 
-                if(name_list[i] == target)  {
+                if(low_name_list[i] == target)  {
 
                     cout<<name_list[i]<<"'s grade = "<<grade_list[i]<<endl;
                     count++;
