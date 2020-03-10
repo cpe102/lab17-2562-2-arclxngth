@@ -85,7 +85,7 @@ int main(){
                     count++;
                 }
             }
-            if(count = 0) cout<<"Cannot found"<<endl;
+            if(count == 0) cout<<"Cannot found"<<endl;
         }
 
         else if(string(command_main) == "grade"){
